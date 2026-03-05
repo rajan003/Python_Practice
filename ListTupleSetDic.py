@@ -38,7 +38,18 @@
   # Looping through Dictionary:  for key , value in student.items():  >>> here for look iterating element is key,value
   #                                 print(key, ":", value)
 
+##Solve this on python:
 
+##JOB-2: 15 GB
+##JOB-3: 20GB
+##JOB-4: 5GB
+
+##The LSF has 2 mchines , with machine limit as
+
+##machine-1: 20GB
+##machine-2: 15GB
+
+##4 jobs need tobe fit in LSF, you have to fit maximum job in first than move to another
 
 jobs = {
     "JOB-2": 15,
