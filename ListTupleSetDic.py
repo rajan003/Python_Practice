@@ -40,50 +40,53 @@
 
 
 
-
-##job requirement
 jobs = {
-        "JOB-1": 10,
-        "JOB-2": 15,
-        "JOB-3": 20,
-        "JOB-4": 5
+    "JOB-2": 15,
+    "JOB-3": 20,
+    "JOB-4": 5,
+    # If you really have JOB-1 too, add it here like: "JOB-1": 10
 }
 
-##Machine capacities
-machine = {
-  "machine-1": 20,
-  "machine-2": 15
+machines = {
+    "machine-1": 20,
+    "machine-2": 15
 }
 
- for i in len(jobs)
-    for j in len(jobs)
-        if j > i : comb2[i][j] = jobs[i]+jobs[j]
+def pack_jobs_max_count_first(jobs, machines):  ## Defining a function arguments machine and jobs
+    # Sort jobs by size ascending to maximize count on a machine
+    remaining_jobs = sorted(jobs.items(), key=lambda kv: kv[1])  # (job, size)  Sorting the jobs as per the second value of each item
 
- for i in len(jobs)
-    for j in len(jobs)
-        if i != j : comb3[i][j] = jobs[i]+jobs[j]
-     
-##Creating List for machine 1 and machine 2 seperately
-machine_1 = [] ##Empty List
-machine_2 = [] ##Empty List
+    allocation = {m: [] for m in machines}  ### Assigning an empty list to the machine at start 
+    leftover = []  ## Emoty list to the Leftover
 
-m1_used = 0
-m2_used = 0
-sort_jobs = sort(jobs.items()}
+    for m, limit in machines.items():  ## Accesing the Machine items iwth (m, limit)== name of machine, its limit
+        used = 0  ## A Variblae names used
+        still_remaining = []  ## Varibal ename still remaining
 
-for i in (len(jobs)):
-    if(i + m1_used < machine.machine-1()):
-            machine_1.append(i)
-            m1_used+=i
-    elif 
+        for job, size in remaining_jobs:
+            if used + size <= limit:
+                allocation[m].append((job, size))
+                used += size
+            else:
+                still_remaining.append((job, size))
 
+        remaining_jobs = still_remaining
 
-#####Combination Functions
-## for combo in combinations(jobs, 2)  >>> Gives you combination of jobe in pair of 2
+    leftover = remaining_jobs
+    return allocation, leftover
 
-for r in range(1, len(jobs) + 1):
-    for combo in combinations(jobs, r):
+allocation, leftover = pack_jobs_max_count_first(jobs, machines)
 
+# Pretty print
+for m, items in allocation.items():
+    used = sum(size for _, size in items)
+    limit = machines[m]
+    print(f"{m} ({used}/{limit} GB): {items}")
+
+if leftover:
+    print("Unscheduled:", leftover)
+else:
+    print("All jobs scheduled.")
 
 
 
