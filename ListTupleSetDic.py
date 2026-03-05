@@ -32,6 +32,11 @@
   #      "age": 25,
   #      "branch": "ECE"
   #  }
+  # print(student["name"]) >>> This will print "Anurag"
+  # Modify: student["name"] = "Rajan"
+  # Add : student["RollNumber"] = 24
+  # Looping through Dictionary:  for key , value in student.items():  >>> here for look iterating element is key,value
+  #                                 print(key, ":", value)
 
 
 
